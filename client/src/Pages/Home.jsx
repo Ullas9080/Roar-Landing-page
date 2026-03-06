@@ -13,6 +13,8 @@ const Home = () => {
 <About/>
 <Services/>
 <PreviousEvents/>
+
+
     </>
   )
 }

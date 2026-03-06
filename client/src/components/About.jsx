@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Lightbulb, Globe, Target, Handshake } from "lucide-react";
 import MissionVisionCard from "../StyleComponents/MissionVisionCard";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
@@ -55,7 +54,6 @@ const About = () => {
         { willChange: "transform" }
       );
 
-      // Smooth upward movement
       gsap.to(
         [
           ".about-header",
@@ -75,7 +73,6 @@ const About = () => {
         }
       );
 
-      // Glow deeper movement
       gsap.to(".bg-glow", {
         y: -250,
         ease: "none",
@@ -87,7 +84,6 @@ const About = () => {
         },
       });
 
-      // Reveal cards
       gsap.from(".value-card", {
         opacity: 0,
         y: 60,
@@ -109,23 +105,36 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-className="relative bg-white overflow-hidden pb-4"
+      className="relative overflow-hidden bg-gradient-to-br from-[#fff7ed] via-white to-[#ffedd5] pb-20"
     >
- 
-      {/* Top Right Glow */}
-      <div className="bg-glow absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-orange-400/30 via-orange-500/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
-      {/* Bottom Left Glow */}
-      <div className="bg-glow absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
+      {/* TOP CURVE */}
+      <div className="absolute top-0 left-0 w-full leading-none">
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          className="w-full h-24"
+        >
+          <path
+            d="M0,80 C360,0 1080,0 1440,80 L1440,0 L0,0 Z"
+            fill="#fff7ed"
+          />
+        </svg>
+      </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      {/* Glow Effects */}
+      <div className="bg-glow absolute -top-40 -right-40 w-[550px] h-[550px] bg-orange-400/25 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="bg-glow absolute bottom-[-120px] left-[-120px] w-[420px] h-[420px] bg-orange-500/15 rounded-full blur-[130px] pointer-events-none" />
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,115,0,0.08),transparent_60%)] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header */}
-        <div className="about-header text-center mb-16">
+        <div className="about-header text-center mb-16 pt-16">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-black mb-6">
-            <span className="who-underline">
-              Who We
-            </span>{" "}
+            <span className="who-underline">Who We</span>{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
               Are
             </span>
@@ -138,28 +147,11 @@ className="relative bg-white overflow-hidden pb-4"
           </p>
         </div>
 
-        {/* Mission & Vision */}
-      <div className="grid md:grid-cols-2 gap-10 mb-20 justify-items-center">
-<MissionVisionCard
-  title="Our Mission "
-  backText="Empowering youth with real opportunities that turn talent into measurable impact."
-  frontBg="#F97316"
-  backBg="#ea580c"
-/>
-
-<MissionVisionCard
-  title="Our Vision"
-  backText="To build a future where every young voice creates meaningful success."
-  frontBg="#111827"
-  backBg="#1f2937"
-/>
-
-</div>
-
-        {/* Value Cards */}
+        {/* Values */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((value) => (
             <div key={value.title} className="value-card group relative">
+
               <div
                 className={`relative p-6 rounded-3xl h-full transition-all duration-300 hover:scale-105 hover:shadow-xl ${
                   value.color === "orange"
@@ -167,6 +159,7 @@ className="relative bg-white overflow-hidden pb-4"
                     : "bg-white border border-gray-200 hover:shadow-lg"
                 }`}
               >
+
                 <div
                   className={`absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-8 rounded-full ${
                     value.color === "orange"
@@ -176,6 +169,7 @@ className="relative bg-white overflow-hidden pb-4"
                 />
 
                 <div className="relative pt-4">
+
                   <div
                     className={`inline-flex p-3 rounded-2xl mb-4 ${
                       value.color === "orange"
@@ -211,6 +205,7 @@ className="relative bg-white overflow-hidden pb-4"
                   >
                     {value.description}
                   </p>
+
                 </div>
 
                 <div
@@ -220,13 +215,33 @@ className="relative bg-white overflow-hidden pb-4"
                       : "bg-gray-200"
                   }`}
                 />
+
               </div>
             </div>
           ))}
         </div>
 
+{/* Mission Vision */}
+<div className="grid md:grid-cols-2 gap-10 mt-20 justify-items-center">
+
+  <MissionVisionCard
+    title="Our Mission"
+    backText="Empowering youth with real opportunities that turn talent into measurable impact."
+    frontBg="#F97316"
+    backBg="#ea580c"
+  />
+
+  <MissionVisionCard
+    title="Our Vision"
+    backText="To build a future where every young voice creates meaningful success."
+    frontBg="#111827"
+    backBg="#1f2937"
+  />
+
+</div>
+
       </div>
-       
+
     </section>
   );
 };

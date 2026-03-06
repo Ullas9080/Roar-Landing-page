@@ -1,10 +1,27 @@
 import styled from "styled-components";
 
-const Button = () => {
+const Button = ({value,scroll}) => {
+
+const scrollToSection = (href) => {
+  const element = document.querySelector(href);
+
+  if (element) {
+    const navbarHeight = 100; 
+    const elementPosition =
+      element.getBoundingClientRect().top + window.pageYOffset;
+
+    window.scrollTo({
+      top: elementPosition - navbarHeight,
+      behavior: "smooth",
+    });
+  }
+
+};
+
   return (
     <StyledWrapper>
-      <button>
-        Explore
+      <button onClick={()=>scrollToSection(scroll)}>
+        {value}
         <div className="icon-1">
           <svg
             xmlnsXlink="http://www.w3.org/1999/xlink"

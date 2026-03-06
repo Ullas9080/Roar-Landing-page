@@ -9,13 +9,24 @@ const MissionVisionCard = ({ title, frontText, backText, frontBg, backBg }) => {
 
           {/* FRONT */}
           <div className="card-front">
+
+            <span className="badge">ROAR ENT</span>
+
             <h3>{title}</h3>
+
+            <div className="divider"></div>
+
             <p>{frontText}</p>
+
           </div>
 
           {/* BACK */}
           <div className="card-back">
+
+            <span className="badge">DETAILS</span>
+
             <p>{backText}</p>
+
           </div>
 
         </div>
@@ -29,7 +40,7 @@ const StyledWrapper = styled.div`
 
   .card {
     width: 100%;
-    height: 300px; /* increase height for proper ratio */
+    height: 300px;
     perspective: 1200px;
   }
 
@@ -58,6 +69,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     padding: 40px;
     text-align: center;
+    overflow: hidden;
   }
 
   .card-front {
@@ -73,16 +85,47 @@ const StyledWrapper = styled.div`
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
   }
 
+  /* badge */
+  .badge {
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    margin-bottom: 14px;
+  }
+
+  /* divider */
+  .divider {
+    width: 60px;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.5);
+    margin-bottom: 18px;
+  }
+
   h3 {
     font-size: 28px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   p {
     font-size: 16px;
     line-height: 1.6;
     max-width: 90%;
+  }
+
+  /* subtle pattern */
+  .card-front::before,
+  .card-back::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
+    top: -50%;
+    left: -50%;
   }
 `;
 

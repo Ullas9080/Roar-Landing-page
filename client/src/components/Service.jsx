@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ServiceCard from "../StyleComponents/ServiceCard";
@@ -55,11 +55,13 @@ const services = [
 
 export default function Services() {
   const sectionRef = useRef(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleServices = showAll ? services : services.slice(0, 6);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      // 🔥 Smooth upward parallax effect
       gsap.to(".services-content", {
         y: -120,
         ease: "none",
@@ -71,7 +73,6 @@ export default function Services() {
         },
       });
 
-      // 🔥 Card reveal animation
       gsap.from(".service-card", {
         opacity: 0,
         y: 80,
@@ -91,62 +92,71 @@ export default function Services() {
 
   return (
     <>
-    <section
-    id="services"
-      ref={sectionRef}
-      className="pt-10 bg-gradient-to-br from-[#fff7ed] via-[#ffedd5] to-[#fed7aa] rounded-t-[100px]"
-    >
-        
-      <div className="services-content max-w-7xl mx-auto">
+      <section
+        id="services"
+        ref={sectionRef}
+        className="pt-10 pb-10 bg-gradient-to-br from-[#fff7ed] via-[#ffedd5] to-[#fed7aa] rounded-t-[100px]"
+      >
 
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900">
-            Our{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
-              Services
-            </span>
-          </h2>
+        <div className="services-content max-w-7xl mx-auto px-6">
 
-          <p className="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
-            Comprehensive solutions tailored for brands looking to connect
-            with Gen Z audiences.
-          </p>
+          {/* Heading */}
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-extrabold text-gray-900">
+              Our{" "}
+              <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+                Services
+              </span>
+            </h2>
+
+            <p className="text-lg text-gray-700 mt-4 max-w-2xl mx-auto">
+              Comprehensive solutions tailored for brands looking to connect
+              with Gen Z audiences.
+            </p>
+          </div>
+
+          {/* Grid */}
+          <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {visibleServices.map((service, index) => (
+              <ServiceCard
+                key={index}
+                title={service.title}
+                image={service.image}
+                description={service.description}
+              />
+            ))}
+          </div>
+
+          {/* Explore Button */}
+          <div className="flex justify-center mt-16">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg"
+            >
+              {showAll ? "Show Less" : "Explore More"}
+            </button>
+          </div>
+
         </div>
 
-        {/* Grid */}
-        <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              title={service.title}
-              image={service.image}
-              description={service.description}
-            />
-          ))}
-        </div>
+      </section>
 
+      {/* Bottom Curve */}
+      <div className="relative -top-15">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full"
+          preserveAspectRatio="none"
+          height={60}
+        >
+          <path
+            d="M0 0L60 10C120 20 240 40 360 50C480 60 600 60 720 55C840 50 960 40 1080 35C1200 30 1320 30 1380 30L1440 30V120H0Z"
+            fill="white"
+          />
+        </svg>
       </div>
-    
-    </section>
-{/* Curved Bottom (Upside Down U with White Gradient) */}
-<div className="relative -top-15">
-  <svg
-    viewBox="0 0 1440 120"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-full"
-    preserveAspectRatio="none"
-    height={60}
-  >
-
-
-    <path
-      d="M0 0L60 10C120 20 240 40 360 50C480 60 600 60 720 55C840 50 960 40 1080 35C1200 30 1320 30 1380 30L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-      fill="white"
-    />
-  </svg>
-</div>
     </>
   );
 }

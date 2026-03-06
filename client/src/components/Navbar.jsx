@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-
+import logo from "../assets/Roar Logo.png"
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
+  { name: "Events", href: "#events" },
   { name: "Team", href: "#team" },
   { name: "Contact", href: "#contact" },
 ];
-
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -41,16 +41,22 @@ const scrollToSection = (href) => {
         "
       >
         {/* LOGO */}
-        <div
-          onClick={() => scrollToSection("#home")}
-          className="
-            text-white font-bold text-lg tracking-wider cursor-pointer
-            rounded-full px-3 py-2 flex items-center gap-1
-            bg-black/60 backdrop-blur-md border border-white/10
-          "
-        >
-          ROAR <span className="text-[#FF6B35]">ENT</span>
-        </div>
+<div
+  onClick={() => scrollToSection("#home")}
+  className="text-white font-bold text-lg tracking-wider cursor-pointer
+  rounded-full px-3 py-2 flex items-center gap-2
+  bg-black/60 backdrop-blur-md border border-white/10"
+>
+
+  <img
+    src={logo}
+    alt="ROAR ENT Logo"
+    className="w-7 h-7 object-contain"
+  />
+
+  ROAR <span className="text-[#FF6B35]">ENT</span>
+
+</div>
 
         {/* NAV CONTAINER */}
         <div className="rounded-full px-3 py-2 flex items-center gap-1 bg-black/60 backdrop-blur-md border border-white/10">
