@@ -68,27 +68,7 @@ const Home = () => (
     {/* ─── HERO ─────────────────────────────── */}
     <section className="relative min-h-screen flex items-center bg-white overflow-hidden">
 
-      {/* RIGHT PANEL — dark cinematic background */}
-      <div className="absolute right-0 top-0 bottom-0 w-[52%] hidden lg:block pointer-events-none" style={{ zIndex: 1 }}>
-        {/* Deep dark base */}
-        <div className="absolute inset-0 bg-[#0d0805]" />
-        {/* Orange spotlight glow from bottom-center */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px]"
-          style={{ background: "radial-gradient(ellipse at bottom, rgba(255,107,53,0.85) 0%, rgba(255,107,53,0.3) 35%, transparent 70%)" }}
-        />
-        {/* Secondary amber glow centre */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(255,140,80,0.15) 0%, transparent 70%)" }}
-        />
-        {/* Subtle dot texture */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "32px 32px" }}
-        />
-        {/* Left-edge fade: blends dark panel into white left side */}
-        <div className="absolute inset-y-0 left-0 w-36"
-          style={{ background: "linear-gradient(to right, #fff 0%, transparent 100%)" }}
-        />
-      </div>
+
 
       {/* CHARACTER IMAGE — fills right panel dramatically */}
       <motion.div
@@ -103,34 +83,13 @@ const Home = () => (
           src={bgCharacter}
           alt="ROAR Character"
           className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{
-            filter: "drop-shadow(-20px 0 40px rgba(255,107,53,0.4))",
-          }}
           animate={{ scale: [1, 1.025, 1] }}
           transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
         />
-        {/* Bottom gradient fade into dark */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
-          style={{ background: "linear-gradient(to top, #0d0805 0%, transparent 100%)" }}
-        />
-        {/* Left fade to blend with white page */}
-        <div className="absolute inset-y-0 left-0 w-40 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #fff 0%, transparent 100%)" }}
-        />
       </motion.div>
 
 
-      {/* Floating badge — top right of image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.7, x: 20 }}
-        animate={{ opacity: 1, scale: 1, x: 0 }}
-        transition={{ delay: 1.1, type: "spring", stiffness: 200, damping: 18 }}
-        className="absolute top-32 right-16 hidden xl:flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3"
-        style={{ zIndex: 10 }}
-      >
-        <span className="text-white font-black text-2xl">🔥 ROAR</span>
-        <span className="text-orange-300 text-xs font-medium tracking-widest uppercase mt-0.5">ENT • Since 2021</span>
-      </motion.div>
+
 
       {/* CONTENT — left side */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-20">
