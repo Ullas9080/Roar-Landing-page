@@ -1,13 +1,13 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Team from "./pages/Team";
-import Contact from "./pages/Contact";
-import Events from "./pages/Events";
-import BackToTop from "./components/BackToTop";
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Services from "./pages/Services.jsx";
+import Team from "./pages/Team.jsx";
+import Contact from "./pages/Contact.jsx";
+import Events from "./pages/Events.jsx";
+import BackToTop from "./components/BackToTop.jsx";
 
 const App = () => {
   const location = useLocation();
