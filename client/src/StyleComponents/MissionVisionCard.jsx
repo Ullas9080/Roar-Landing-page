@@ -1,132 +1,133 @@
 import React from "react";
 import styled from "styled-components";
 
-const MissionVisionCard = ({ title, frontText, backText, frontBg, backBg }) => {
+const MissionVisionCard = ({ title, text }) => {
   return (
-    <StyledWrapper frontBg={frontBg} backBg={backBg}>
+    <StyledWrapper>
       <div className="card">
-        <div className="card-inner">
 
-          {/* FRONT */}
-          <div className="card-front">
+        <div className="icon-circle" />
 
-            <span className="badge">ROAR ENT</span>
+        <h3>{title}</h3>
 
-            <h3>{title}</h3>
+        <div className="underline" />
 
-            <div className="divider"></div>
+        <p>{text}</p>
 
-            <p>{frontText}</p>
-
-          </div>
-
-          {/* BACK */}
-          <div className="card-back">
-
-            <span className="badge">DETAILS</span>
-
-            <p>{backText}</p>
-
-          </div>
-
-        </div>
       </div>
     </StyledWrapper>
   );
 };
 
 const StyledWrapper = styled.div`
-  width: 100%;
 
-  .card {
-    width: 100%;
-    height: 300px;
-    perspective: 1200px;
-  }
+display:flex;
+justify-content:center;
 
-  .card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-  }
+.card{
+  position:relative;
+  width:100%;
+  max-width:420px;
+  padding:40px 35px;
 
-  .card:hover .card-inner {
-    transform: rotateY(180deg);
-  }
+  border-radius:22px;
 
-  .card-front,
-  .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    text-align: center;
-    overflow: hidden;
-  }
+  background:white;
 
-  .card-front {
-    background: ${(props) => props.frontBg || "#F97316"};
-    color: #fff;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  }
+  border:1px solid #f1f1f1;
 
-  .card-back {
-    background: ${(props) => props.backBg || "#111827"};
-    color: #fff;
-    transform: rotateY(180deg);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  }
+  overflow:hidden;
 
-  /* badge */
-  .badge {
-    font-size: 11px;
-    letter-spacing: 1px;
-    padding: 6px 12px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.2);
-    margin-bottom: 14px;
-  }
+  transition:all .35s ease;
 
-  /* divider */
-  .divider {
-    width: 60px;
-    height: 3px;
-    border-radius: 3px;
-    background: rgba(255,255,255,0.5);
-    margin-bottom: 18px;
-  }
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.08);
+}
 
-  h3 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
+/* glow background */
 
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    max-width: 90%;
-  }
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
 
-  /* subtle pattern */
-  .card-front::before,
-  .card-back::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
-    top: -50%;
-    left: -50%;
-  }
+  background:linear-gradient(
+  120deg,
+  transparent,
+  rgba(249,115,22,0.12),
+  transparent);
+
+  opacity:0;
+
+  transition:opacity .35s ease;
+}
+
+/* floating circle */
+
+.icon-circle{
+  width:55px;
+  height:55px;
+
+  border-radius:50%;
+
+  background:linear-gradient(
+  135deg,
+  #F97316,
+  #fb923c);
+
+  margin-bottom:22px;
+
+  transition:transform .35s;
+}
+
+/* title */
+
+h3{
+  font-size:26px;
+  font-weight:700;
+  color:#111;
+}
+
+/* underline */
+
+.underline{
+  width:40px;
+  height:3px;
+  background:#F97316;
+  margin:12px 0 18px 0;
+  border-radius:2px;
+
+  transition:width .35s ease;
+}
+
+/* text */
+
+p{
+  font-size:15px;
+  line-height:1.6;
+  color:#555;
+}
+
+/* hover */
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:
+  0 20px 50px rgba(0,0,0,0.15);
+}
+
+.card:hover::before{
+  opacity:1;
+}
+
+.card:hover .underline{
+  width:70px;
+}
+
+.card:hover .icon-circle{
+  transform:scale(1.1);
+}
+
 `;
 
 export default MissionVisionCard;
