@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+/* ── Warm off-white base ───────────────── */
+:root {
+  --bg-primary: #fffdf9;
+  --bg-secondary: #fdf6f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+}
+
+/* ── Custom scrollbar ──────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #fdf6f0; }
+::-webkit-scrollbar-thumb { background: #FF6B35; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #e55a25; }
+
+/* ── Floating / anti-gravity loop ─────── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+.float-y { animation: floatY 4s ease-in-out infinite; }
+
+/* ── Soft pulse ring (CTA buttons) ─────── */
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(255,107,53,0.35); }
+  70%  { box-shadow: 0 0 0 12px rgba(255,107,53,0); }
+  100% { box-shadow: 0 0 0 0   rgba(255,107,53,0); }
+}
+.pulse-ring { animation: pulseRing 2.4s ease-out infinite; }
+
+/* ── Shimmer text ──────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #FF6B35 25%, #ffb347 50%, #FF6B35 75%);
+  background-size: 800px 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ── Stagger reveal helper ─────────────── */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

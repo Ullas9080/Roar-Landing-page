@@ -168,7 +168,7 @@ export default function Hero() {
 
           </div>
 
-          <Button value={"Explore"} scroll={"#services"}/>
+          <Button value={"Explore"} to="/services"/>
 
         </div>
 

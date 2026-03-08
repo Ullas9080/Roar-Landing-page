@@ -1,149 +1,122 @@
-import { motion } from "framer-motion";
-import { Instagram, Mail, Phone, ExternalLink, ArrowUpRight, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Instagram, Mail, Phone, ExternalLink, Heart, ArrowUpRight } from "lucide-react";
 
-const footerLinks = [
-  {
-    title: "Company",
-    links: [
-      { name: "About Us", href: "#about" },
-      { name: "Services", href: "#services" },
-      { name: "Team", href: "#team" },
-      { name: "Contact", href: "#contact" },
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      { name: "Event Management", href: "#services" },
-      { name: "Digital Marketing", href: "#services" },
-      { name: "Content Creation", href: "#services" },
-      { name: "Brand Promotion", href: "#services" },
-    ],
-  },
+const links = [
+  { name: "Home", to: "/" },
+  { name: "About", to: "/about" },
+  { name: "Services", to: "/services" },
+  { name: "Events", to: "/events" },
+  { name: "Team", to: "/team" },
+  { name: "Contact", to: "/contact" },
+];
+
+const services = [
+  "Event Management",
+  "Artist Management",
+  "Digital Marketing",
+  "Content Creation",
+  "Brand Promotions",
+  "Gaming & Esports",
 ];
 
 export default function Footer() {
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <footer className="relative bg-white pt-20 pb-8 overflow-hidden">
-
-      {/* Top Gradient Line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF6B35] to-transparent" />
-
-      {/* Decorative Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-[#FF6B35] rounded-full blur-[150px] opacity-10" />
-
-      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-20">
-        <div className="max-w-6xl mx-auto">
-
-          {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
-            {/* Brand */}
-            <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                  ROAR <span className="text-[#FF6B35]">ENT</span>
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed mb-6 max-w-md">
-                  A youth community platform bridging the gap between India's most capable youth
-                  and the work they love through meaningful engagements and real-world experiences.
-                </p>
-
-                {/* Social Links */}
-                <div className="flex items-center gap-4">
-                  <a
-                    href="https://instagram.com/roar_ent_official"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-[#FF6B35] hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <Instagram className="w-5 h-5" />
-                  </a>
-
-                  <a
-                    href="mailto:roar.ent23@gmail.com"
-                    className="w-12 h-12 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-[#FF6B35] hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <Mail className="w-5 h-5" />
-                  </a>
-
-                  <a
-                    href="tel:+919380673384"
-                    className="w-12 h-12 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-[#FF6B35] hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <Phone className="w-5 h-5" />
-                  </a>
-
-                  <a
-                    href="https://linktr.ee/roarent"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-100 border border-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-[#FF6B35] hover:text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Links */}
-            {footerLinks.map((section, index) => (
-              <motion.div
-                key={section.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-              >
-                <h4 className="text-gray-900 font-semibold mb-6">{section.title}</h4>
-
-                <ul className="space-y-4">
-                  {section.links.map((link) => (
-                    <li key={link.name}>
-                      <button
-                        onClick={() => scrollToSection(link.href)}
-                        className="text-gray-600 hover:text-[#FF6B35] transition-colors flex items-center gap-2 group"
-                      >
-                        {link.name}
-                        <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+    <footer className="bg-gray-900 border-t border-gray-800">
+      {/* CTA Banner */}
+      <div className="border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              Ready to <span className="text-[#FF6B35]">Roar</span>?
+            </h3>
+            <p className="text-gray-400">Let's create something amazing together.</p>
           </div>
+          <Link
+            to="/contact"
+            className="flex-shrink-0 bg-[#FF6B35] hover:bg-[#e55a25] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 hover:shadow-xl hover:shadow-orange-900/30 flex items-center gap-2 group"
+          >
+            Get In Touch
+            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
+        </div>
+      </div>
 
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-200 pt-8">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-
-              <p className="text-gray-500 text-sm">
-                © {new Date().getFullYear()} ROAR ENT. All rights reserved.
-              </p>
-
-              <p className="text-gray-500 text-sm flex items-center gap-1">
-                Made with
-                <Heart className="w-4 h-4 text-[#FF6B35] fill-[#FF6B35]" />
-                for India's Youth
-              </p>
-
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-flex items-center gap-2 mb-6">
+              <span className="text-2xl font-bold text-white">
+                ROAR <span className="text-[#FF6B35]">ENT</span>
+              </span>
+            </Link>
+            <p className="text-gray-400 leading-relaxed mb-6 max-w-sm">
+              A youth community platform bridging the gap between India's most capable
+              youth and the work they love through meaningful engagements.
+            </p>
+            <div className="flex gap-3">
+              {[
+                { icon: Instagram, href: "https://instagram.com/roar_ent_official", label: "Instagram" },
+                { icon: Mail, href: "mailto:roar.ent23@gmail.com", label: "Email" },
+                { icon: Phone, href: "tel:+919380673384", label: "Phone" },
+                { icon: ExternalLink, href: "https://linktr.ee/roarent", label: "Linktree" },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 hover:text-[#FF6B35] hover:border-orange-500/50 hover:bg-orange-500/10 transition-all duration-200"
+                >
+                  <Icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
+          <div>
+            <h4 className="text-white font-semibold mb-5 text-sm tracking-wider uppercase">Pages</h4>
+            <ul className="space-y-3">
+              {links.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.to}
+                    className="text-gray-400 hover:text-[#FF6B35] transition-colors text-sm flex items-center gap-1 group"
+                  >
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-5 text-sm tracking-wider uppercase">Services</h4>
+            <ul className="space-y-3">
+              {services.map((s) => (
+                <li key={s}>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 hover:text-[#FF6B35] transition-colors text-sm flex items-center gap-1 group"
+                  >
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {s}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-sm">
+            © {new Date().getFullYear()} ROAR ENT. All rights reserved.
+          </p>
+          <p className="text-gray-500 text-sm flex items-center gap-1.5">
+            Made with <Heart className="w-3.5 h-3.5 text-[#FF6B35] fill-[#FF6B35]" /> for India's Youth
+          </p>
         </div>
       </div>
     </footer>

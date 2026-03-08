@@ -39,7 +39,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="relative overflow-hidden py-24 bg-gradient-to-br from-[#fff7ed] via-white to-[#ffedd5]">
+    <section className="relative overflow-hidden py-10 bg-gradient-to-br from-[#fff7ed] via-white to-[#ffedd5]">
 
       {/* TOP CURVE */}
       <div className="absolute top-0 left-0 w-full leading-none">

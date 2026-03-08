@@ -1,26 +1,36 @@
 import styled from "styled-components";
 
-const Button = ({value,scroll}) => {
+import { useNavigate } from "react-router-dom";
 
-const scrollToSection = (href) => {
-  const element = document.querySelector(href);
+const Button = ({ value, scroll, to }) => {
+  const navigate = useNavigate();
 
-  if (element) {
-    const navbarHeight = 100; 
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
+  const scrollToSection = (href) => {
+    const element = document.querySelector(href);
 
-    window.scrollTo({
-      top: elementPosition - navbarHeight,
-      behavior: "smooth",
-    });
-  }
+    if (element) {
+      const navbarHeight = 100;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
 
-};
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleClick = () => {
+    if (to) {
+      navigate(to);
+    } else if (scroll) {
+      scrollToSection(scroll);
+    }
+  };
 
   return (
     <StyledWrapper>
-      <button onClick={()=>scrollToSection(scroll)}>
+      <button onClick={handleClick}>
         {value}
         <div className="icon-1">
           <svg

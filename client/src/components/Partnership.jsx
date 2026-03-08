@@ -1,29 +1,17 @@
-import A from "../../public/Partnership/A.jpg";
-import acts from "../../public/Partnership/acts.png";
-import Bahumukhi from "../../public/Partnership/Bahumukhi.jpg";
-import GraceTech from "../../public/Partnership/Grace Tech.jpg";
-import Koncept from "../../public/Partnership/Koncept.png";
-import Kgen from "../../public/Partnership/Kgen.png";
-import Naaraa from "../../public/Partnership/Naaraa.jpg";
-import Noizz from "../../public/Partnership/Noizz.jpg";
-import Panda from "../../public/Partnership/Panda.jpg";
-import rar from "../../public/Partnership/rar.png";
-import raze from "../../public/Partnership/raze.jpg";
-import Trt from "../../public/Partnership/Trt.png";
-
+// assets live in public/Partnership so we reference them by URL instead of importing
 const logos = [
-  A,
-  acts,
-  Bahumukhi,
-  GraceTech,
-  Koncept,
-  Kgen,
-  Naaraa,
-  Noizz,
-  Panda,
-  rar,
-  raze,
-  Trt,
+  "/Partnership/A.jpg",
+  "/Partnership/acts.png",
+  "/Partnership/Bahumukhi.jpg",
+  "/Partnership/Grace Tech.jpg",
+  "/Partnership/Koncept.png",
+  "/Partnership/Kgen.png",
+  "/Partnership/Naaraa.jpg",
+  "/Partnership/Noizz.jpg",
+  "/Partnership/Panda.jpg",
+  "/Partnership/rar.png",
+  "/Partnership/raze.jpg",
+  "/Partnership/Trt.png",
 ];
 
 const Partnership = () => {
