@@ -3,125 +3,129 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
-import { Linkedin, Twitter, Instagram, ArrowRight, Users } from "lucide-react";
+import MeshBg from "../components/MeshBg";
+import { Linkedin, Twitter, Instagram, ArrowRight } from "lucide-react";
 
 const teamMembers = [
-  { name: "Founder & CEO", role: "Visionary Leader", image: "/images/team-1.jpg", bio: "Passionate about connecting India's youth with meaningful opportunities. Building ROAR ENT from the ground up.", socials: { linkedin: "#", twitter: "#", instagram: "#" } },
-  { name: "Creative Director", role: "Design & Creative", image: "/images/team-2.jpg", bio: "Award-winning creative mind behind ROAR's campaigns and brand identity. Loving design at every scale.", socials: { linkedin: "#", twitter: "#", instagram: "#" } },
-  { name: "Marketing Head", role: "Growth & Strategy", image: "/images/team-3.jpg", bio: "Data-driven marketer with a love for youth culture. Turning insights into impactful campaigns.", socials: { linkedin: "#", twitter: "#", instagram: "#" } },
+  { name: "Founder & CEO",      role: "Visionary Leader",  img: "/images/team-1.jpg", bio: "Passionate about connecting India's youth with meaningful opportunities. Building ROAR ENT from the ground up since 2021.", since: "2021", socials: { linkedin: "#", twitter: "#", instagram: "#" } },
+  { name: "Creative Director",  role: "Design & Creative", img: "/images/team-2.jpg", bio: "Award-winning creative behind ROAR's campaigns and brand identity — from bold concepts to polished execution.", since: "2021", socials: { linkedin: "#", twitter: "#", instagram: "#" } },
+  { name: "Marketing Head",     role: "Growth & Strategy", img: "/images/team-3.jpg", bio: "Data-driven marketer with a deep love for youth culture. Converting audience insights into campaigns that resonate.", since: "2022", socials: { linkedin: "#", twitter: "#", instagram: "#" } },
+];
+
+const stats = [
+  { v: "100%", l: "Passion Driven" },
+  { v: "∞",    l: "Creative Possibilities" },
+  { v: "24/7", l: "Committed to You" },
+  { v: "0",    l: "Limits Set" },
 ];
 
 const Team = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.45 }}
-    className="bg-white"
-  >
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
+    style={{ background: "var(--bg)" }}>
     <Navbar />
+    <div className="h-20" />
 
-    {/* ─── HERO ─────────────────────────────── */}
-    <section className="relative min-h-[65vh] flex items-center overflow-hidden bg-white pt-20">
-      <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-orange-100/50 rounded-full blur-[150px]" />
-      <div className="absolute inset-0 opacity-[0.4]"
-        style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)", backgroundSize: "80px 80px" }}
-      />
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-10 text-center">
-        <motion.span initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-orange-600 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5 mb-6"
-        >The People</motion.span>
-        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-5xl md:text-7xl font-black text-gray-900 mb-6"
-        >
-          Meet The <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-orange-400">Creators</span>
+    {/* Hero */}
+    <section className="relative overflow-hidden pb-10 pt-14" style={{ background: "var(--bg)" }}>
+      <MeshBg prominent />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="aurora-1 absolute -top-16 -right-16 w-[450px] h-[450px] rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, #FF6B35 0%, transparent 70%)" }} />
+        <div className="absolute inset-0 grid-overlay opacity-40" />
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 text-center">
+        <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+          className="inline-block text-orange-500 text-xs font-semibold tracking-[0.22em] uppercase glass-orange rounded-full px-4 py-2 mb-7">
+          The People
+        </motion.span>
+        <motion.h1 initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.75, delay: 0.18 }}
+          className="text-5xl md:text-7xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
+          Meet The <span className="gradient-text">Creators</span>
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.6 }}
-          className="text-gray-500 text-xl max-w-2xl mx-auto"
-        >
-          A diverse team bringing together expertise in technology, marketing, design, and event management.
+        <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.34 }}
+          className="text-xl max-w-2xl mx-auto" style={{ color: "var(--text-muted)" }}>
+          A diverse, passionate team bringing expertise in events, marketing, design, and technology.
         </motion.p>
       </div>
     </section>
 
-    {/* ─── TEAM GRID ────────────────────────── */}
-    <section className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {teamMembers.map((member, i) => (
-            <motion.div key={member.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group rounded-2xl overflow-hidden bg-white border border-gray-100 hover:border-orange-200 hover:shadow-xl hover:shadow-orange-50 transition-all duration-300 hover:-translate-y-1"
+    {/* Team Grid */}
+    <section className="py-20" style={{ background: "var(--bg-1)" }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {teamMembers.map((m, i) => (
+            <motion.div key={m.name}
+              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              whileHover={{ y: -6, transition: { type: "spring", stiffness: 280, damping: 20 } }}
+              className="card rounded-3xl overflow-hidden group border-glow"
             >
-              <div className="relative h-64 overflow-hidden bg-gray-100">
-                <img src={member.image} alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                {/* Social hover */}
-                <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                  {[
-                    { icon: Linkedin, href: member.socials.linkedin },
-                    { icon: Twitter, href: member.socials.twitter },
-                    { icon: Instagram, href: member.socials.instagram },
-                  ].map(({ icon: Icon, href }) => (
-                    <a key={href + Icon.name} href={href}
-                      className="w-8 h-8 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-600 hover:text-[#FF6B35] hover:border-orange-200 transition-colors shadow-sm"
-                    >
-                      <Icon className="w-3.5 h-3.5" />
+              {/* Full-brightness team photo */}
+              <div className="relative overflow-hidden" style={{ height: "260px" }}>
+                <img src={m.img} alt={m.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+                {/* Since badge — white pill */}
+                <span className="absolute top-3 left-3 text-xs rounded-full px-3 py-1.5 backdrop-blur-md"
+                  style={{ background: "rgba(255,255,255,0.88)", color: "var(--text-muted)", border: "1px solid var(--card-border)" }}>
+                  Since {m.since}
+                </span>
+                {/* Social icons — appear on hover, white pills */}
+                <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                  {[{ I: Linkedin, h: m.socials.linkedin }, { I: Twitter, h: m.socials.twitter }, { I: Instagram, h: m.socials.instagram }].map(({ I, h }) => (
+                    <a key={h + I.name} href={h}
+                      className="w-8 h-8 rounded-xl flex items-center justify-center transition-colors hover:text-orange-500 backdrop-blur-md"
+                      style={{ background: "rgba(255,255,255,0.88)", color: "var(--text-muted)", border: "1px solid var(--card-border)" }}>
+                      <I className="w-3.5 h-3.5" />
                     </a>
                   ))}
                 </div>
               </div>
               <div className="p-6">
-                <span className="text-xs text-orange-500 font-semibold tracking-widest uppercase">{member.role}</span>
-                <h3 className="text-gray-900 font-bold text-xl mt-1 mb-3">{member.name}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{member.bio}</p>
+                <span className="block text-orange-500 text-xs font-semibold tracking-widest uppercase mb-1">{m.role}</span>
+                <h3 className="font-bold text-xl mb-3" style={{ color: "var(--text)" }}>{m.name}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{m.bio}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Join us */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-          className="text-center p-12 rounded-3xl bg-white border border-gray-100"
-        >
-          <div className="w-16 h-16 mx-auto bg-orange-50 border border-orange-100 rounded-2xl flex items-center justify-center mb-5">
-            <Users className="w-7 h-7 text-[#FF6B35]" />
+        {/* Join Us */}
+        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="card rounded-3xl p-10 text-center border-glow">
+          <div className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-5"
+            style={{ background: "#FF6B3512", border: "1px solid #FF6B3525" }}>
+            <ArrowRight className="w-6 h-6 text-orange-500" />
           </div>
-          <h3 className="text-gray-900 font-bold text-2xl mb-3">Want to Join the Team?</h3>
-          <p className="text-gray-400 mb-6 max-w-md mx-auto">We're always looking for passionate, creative individuals who share our vision for youth empowerment.</p>
+          <h3 className="font-bold text-2xl mb-3" style={{ color: "var(--text)" }}>Want to Join the Team?</h3>
+          <p className="mb-6 max-w-md mx-auto" style={{ color: "var(--text-muted)" }}>We're always looking for passionate, creative people who share our vision for youth empowerment.</p>
           <Link to="/contact"
-            className="inline-flex items-center gap-2 bg-[#FF6B35] hover:bg-[#e55a25] text-white px-7 py-3 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-orange-200 group"
-          >
+            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/20 group">
             Get In Touch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
       </div>
     </section>
 
-    {/* ─── CULTURE ──────────────────────────── */}
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-orange-600 bg-orange-50 border border-orange-200 rounded-full px-4 py-1.5 mb-6">Our Culture</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              We Don't Just Work —<br /><span className="text-[#FF6B35]">We Create Together</span>
+    {/* Culture */}
+    <section className="py-24 pb-28" style={{ background: "var(--bg)" }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <span className="block text-orange-500 text-xs font-semibold tracking-[0.22em] uppercase mb-6">Our Culture</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--text)" }}>
+              We Don't Just Work —<br /><span className="gradient-text">We Create Together</span>
             </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              At ROAR ENT, we believe the best work comes from a culture of trust, creativity, and relentless ambition.
-              Together, we're not just building a company — we're building a movement.
+            <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
+              At ROAR ENT, the best work comes from trust, creativity, and relentless ambition. We're not building a company — we're building a movement.
             </p>
           </motion.div>
           <div className="grid grid-cols-2 gap-4">
-            {[
-              { value: "100%", label: "Passion Driven" },
-              { value: "∞", label: "Creative Possibilities" },
-              { value: "24/7", label: "Committed to You" },
-              { value: "0", label: "Limits Set" },
-            ].map((item, i) => (
-              <motion.div key={item.label} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.4 }}
-                className="p-6 rounded-2xl bg-gray-50 border border-gray-100 text-center"
-              >
-                <p className="text-4xl font-black text-[#FF6B35] mb-1">{item.value}</p>
-                <p className="text-gray-400 text-sm">{item.label}</p>
+            {stats.map((s, i) => (
+              <motion.div key={s.l}
+                initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.04, y: -4, transition: { type: "spring", stiffness: 280, damping: 20 } }}
+                className="card rounded-3xl p-7 text-center border-glow">
+                <p className="text-4xl font-black gradient-text mb-1">{s.v}</p>
+                <p className="text-sm" style={{ color: "var(--text-muted)" }}>{s.l}</p>
               </motion.div>
             ))}
           </div>

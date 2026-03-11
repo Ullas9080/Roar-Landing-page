@@ -1,56 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* ── Warm off-white base ───────────────── */
+/* ══════════════════════════════════════════
+   LIGHT THEME (DEFAULT)
+══════════════════════════════════════════ */
 :root {
-  --bg-primary: #fffdf9;
-  --bg-secondary: #fdf6f0;
+  /* Warm champagne-cream light palette */
+  --bg:            #f9f7f4;
+  --bg-1:          #f1ede7;
+  --bg-2:          #e8e2d9;
+  --surface:       rgba(0,0,0,0.045);
+  --surface-hover: rgba(0,0,0,0.07);
+  --border:        rgba(0,0,0,0.09);
+  --border-orange: rgba(255,107,53,0.30);
+  --orange:        #FF6B35;
+  --text:          #1a1714;
+  --text-muted:    rgba(26,23,20,0.54);
+  --text-dim:      rgba(26,23,20,0.28);
+  --scrollbar-track: #f1ede7;
+  --card-bg:       #fdfcfa;
+  --card-border:   rgba(0,0,0,0.09);
 }
 
-html {
-  scroll-behavior: smooth;
+/* ══════════════════════════════════════════
+   DARK THEME
+══════════════════════════════════════════ */
+[data-theme="dark"] {
+  /* Deep navy-charcoal dark palette */
+  --bg:            #10101a;
+  --bg-1:          #161622;
+  --bg-2:          #1e1e2e;
+  --surface:       rgba(255,255,255,0.055);
+  --surface-hover: rgba(255,255,255,0.09);
+  --border:        rgba(255,255,255,0.09);
+  --border-orange: rgba(255,107,53,0.32);
+  --orange:        #FF6B35;
+  --text:          #ede9e4;
+  --text-muted:    rgba(237,233,228,0.50);
+  --text-dim:      rgba(237,233,228,0.24);
+  --scrollbar-track: #161622;
+  --card-bg:       rgba(255,255,255,0.045);
+  --card-border:   rgba(255,255,255,0.09);
 }
+
+/* ══════════════════════════════════════════
+   BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--bg-primary);
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  overflow-x: hidden;
 }
 
-/* ── Custom scrollbar ──────────────────── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #fdf6f0; }
-::-webkit-scrollbar-thumb { background: #FF6B35; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #e55a25; }
+::selection { background: rgba(255,107,53,0.20); color: var(--text); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 99px; }
 
-/* ── Floating / anti-gravity loop ─────── */
-@keyframes floatY {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-14px); }
+/* ══════════════════════════════════════════
+   GLASS UTILITIES
+══════════════════════════════════════════ */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--border);
+  transition: background 0.35s ease, border-color 0.35s ease;
 }
-.float-y { animation: floatY 4s ease-in-out infinite; }
 
-/* ── Soft pulse ring (CTA buttons) ─────── */
-@keyframes pulseRing {
-  0%   { box-shadow: 0 0 0 0 rgba(255,107,53,0.35); }
-  70%  { box-shadow: 0 0 0 12px rgba(255,107,53,0); }
-  100% { box-shadow: 0 0 0 0   rgba(255,107,53,0); }
+.glass-orange {
+  background: rgba(255,107,53,0.07);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,107,53,0.20);
 }
-.pulse-ring { animation: pulseRing 2.4s ease-out infinite; }
 
-/* ── Shimmer text ──────────────────────── */
-@keyframes shimmer {
-  0%   { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
+/* Clean card — white in light, dark surface in dark */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.3s ease;
 }
-.shimmer-text {
-  background: linear-gradient(90deg, #FF6B35 25%, #ffb347 50%, #FF6B35 75%);
-  background-size: 800px 100%;
+.card:hover {
+  box-shadow: 0 12px 40px rgba(255,107,53,0.10), 0 0 0 1px rgba(255,107,53,0.15);
+}
+
+/* ══════════════════════════════════════════
+   BORDER GLOW
+══════════════════════════════════════════ */
+.border-glow {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s ease;
+}
+.border-glow:hover {
+  box-shadow: 0 0 0 1px rgba(255,107,53,0.30), 0 16px 48px rgba(255,107,53,0.10), 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════════ */
+.gradient-text {
+  background: linear-gradient(135deg, #FF6B35 0%, #f97316 50%, #FF6B35 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
+  animation: gradient-shift 4s linear infinite;
+}
+@keyframes gradient-shift {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
 
-/* ── Stagger reveal helper ─────────────── */
-@keyframes slideUpFade {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ══════════════════════════════════════════
+   AURORA BLOBS
+══════════════════════════════════════════ */
+@keyframes aurora-1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(60px,-30px) scale(1.07)} 66%{transform:translate(-35px,50px) scale(0.95)} }
+@keyframes aurora-2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-50px,40px) scale(1.05)} 66%{transform:translate(40px,-25px) scale(1.08)} }
+@keyframes aurora-3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,30px) scale(1.06)} }
+.aurora-1 { animation: aurora-1 14s ease-in-out infinite; }
+.aurora-2 { animation: aurora-2 17s ease-in-out infinite; }
+.aurora-3 { animation: aurora-3 12s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.float { animation: float 5s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(255,107,53,0.40); }
+  70%  { box-shadow: 0 0 0 12px rgba(255,107,53,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,107,53,0); }
 }
+.pulse-ring { animation: pulse-ring 2.5s ease-out infinite; }
+
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.marquee { animation: marquee 28s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
+/* ══════════════════════════════════════════
+   NOISE & GRID
+══════════════════════════════════════════ */
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Dot grid  ─────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(99,102,241,0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+[data-theme="dark"] .dot-grid {
+  background-image: radial-gradient(circle, rgba(139,92,246,0.22) 1px, transparent 1px);
+}
+
+/* Legacy grid-overlay kept for backwards compat */
+.grid-overlay {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
