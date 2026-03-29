@@ -64,7 +64,7 @@ const About = () => (
     <section className="py-24 bg-[var(--bg-1)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-          <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">Purpose</span>
+          <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">Purpose</span>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">Mission & Vision</h2>
         </motion.div>
 
@@ -110,7 +110,7 @@ const About = () => (
     <section className="py-24 bg-[var(--bg)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-          <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">What We Stand For</span>
+          <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">What We Stand For</span>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">Core Values</h2>
         </motion.div>
 
@@ -138,7 +138,7 @@ const About = () => (
     <section className="py-24 bg-[var(--bg-1)] border-t border-[var(--border)]">
       <div className="max-w-3xl mx-auto px-6 sm:px-8">
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">Our Journey</span>
+          <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">Our Journey</span>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">Building Milestones</h2>
         </motion.div>
 

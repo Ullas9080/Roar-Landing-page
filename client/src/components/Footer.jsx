@@ -29,7 +29,7 @@ export default function Footer() {
       <div className="border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-semibold mb-1 text-[var(--text)] tracking-tight">
+            <h3 className="text-3xl font-bold mb-2 text-gradient pb-1 tracking-tight">
               Ready to create something amazing?
             </h3>
             <p className="text-[var(--text-muted)] text-sm">Let's build meaningful engagements together.</p>
@@ -58,7 +58,7 @@ export default function Footer() {
                 <a key={label} href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer" aria-label={label}
-                  className="w-9 h-9 rounded-md flex items-center justify-center border border-[var(--border)] bg-[var(--card-bg)] text-[var(--text-muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-tr from-[var(--orange)] to-rose-500 text-white shadow-md hover:-translate-y-1 hover:shadow-lg transition-all"
                 >
                   <Icon className="w-4 h-4" />
                 </a>

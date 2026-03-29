@@ -51,7 +51,7 @@ const Events = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 flex flex-col items-center text-center">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 mb-6 bg-[var(--bg-1)] border border-[var(--border)]">
-            <span className="text-xs font-semibold tracking-wide text-[var(--text)] uppercase">Our Portfolio</span>
+            <span className="text-xs font-semibold tracking-wide text-[var(--orange)] uppercase">Our Portfolio</span>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
@@ -123,9 +123,8 @@ const Events = () => {
           </motion.div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {partnerLogos.map((p, i) => (
-              <motion.div key={p.name}
-                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="aspect-video card rounded-xl flex items-center justify-center p-6 grayscale hover:grayscale-0 transition-all duration-300 bg-[var(--card-bg)]"
+              <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                className="aspect-video card rounded-xl flex items-center justify-center p-6 transition-all duration-300 bg-[var(--card-bg)]"
               >
                 <img src={p.src} alt={p.name} className="w-full h-full object-contain" />
               </motion.div>
@@ -133,45 +132,7 @@ const Events = () => {
           </div>
         </div>
       </section>
-
-      {/* FAQ */}
-      <section className="py-24 bg-[var(--bg-1)]">
-        <div className="max-w-3xl mx-auto px-6 sm:px-8">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">Quick Answers</h2>
-          </motion.div>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <motion.div key={i}
-                initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="card rounded-lg overflow-hidden"
-              >
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left gap-4 hover:bg-[var(--surface-hover)] transition-colors">
-                  <span className="font-medium text-sm text-[var(--text)]">{faq.q}</span>
-                  <ChevronDown className={`w-4 h-4 flex-shrink-0 text-[var(--text-muted)] transition-transform duration-200 ${openFaq === i ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {openFaq === i && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-                      <div className="px-6 pb-5 text-sm text-[var(--text-muted)] leading-relaxed border-t border-[var(--border)] pt-4">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link to="/contact" className="btn-secondary group">
-              Ask Us Directly <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
+      
       <Footer />
       <BackToTop />
     </motion.div>

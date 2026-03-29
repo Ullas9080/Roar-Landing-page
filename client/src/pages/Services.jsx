@@ -119,7 +119,7 @@ const Services = () => {
       <section className="py-24 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">Our Process</span>
+            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">Our Process</span>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">How We Work</h2>
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -70,8 +70,8 @@ function FAQ() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-start">
           <motion.div initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-[var(--text)]">
+            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-gradient pb-1">
               Questions? We have answers.
             </h2>
             <p className="text-[var(--text-muted)] mb-8">
@@ -171,7 +171,7 @@ const Home = () => {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
               className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 mb-8 bg-[var(--bg-1)] border border-[var(--border)]">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--text)]"></span>
-              <span className="text-xs font-semibold tracking-wide text-[var(--text)]">India's Premier Youth Platform</span>
+              <span className="text-xs font-semibold tracking-wide text-[var(--orange)]">India's Premier Youth Platform</span>
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
@@ -219,8 +219,8 @@ const Home = () => {
             }}
             className="flex-1 w-full lg:w-auto relative"
           >
-             <div className="relative aspect-[4/5] lg:aspect-auto lg:h-[700px] w-full max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden glass p-4">
-                <div className="w-full h-full bg-[var(--bg-1)] rounded-xl overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-[2000ms]">
+              <div className="relative aspect-[4/5] lg:aspect-auto lg:h-[700px] w-full max-w-md mx-auto lg:max-w-none rounded-2xl overflow-hidden glass p-4">
+                <div className="w-full h-full bg-[var(--bg-1)] rounded-xl overflow-hidden relative">
                   <img src={bgCharacter} alt="Hero representation" className="w-full h-full object-cover object-top opacity-90" />
                 </div>
              </div>
@@ -236,7 +236,7 @@ const Home = () => {
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <div>
-              <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">What We Do</span>
+              <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">What We Do</span>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">
                 Our Services
               </h2>
@@ -255,8 +255,8 @@ const Home = () => {
       <section className="py-24 border-y border-[var(--border)] bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
-            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">Why Choose Us</span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text)]">
+            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--orange)] mb-3">Why Choose Us</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gradient pb-1">
               Built for India's Next Generation
             </h2>
           </motion.div>
