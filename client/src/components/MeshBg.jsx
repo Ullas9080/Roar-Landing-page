@@ -1,63 +1,63 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { useTheme } from "../App";
 
-// Reusable mesh background used across multiple pages.  
-// Accepts `prominent` prop for stronger opacity (e.g. on homepage hero).
-export default function MeshBg({ prominent = false }) {
-  const opacity = prominent ? 0.22 : 0.14;
-  const dotOpacity = prominent ? 0.6 : 0.4;
+export default function MeshBg() {
+  const { theme } = useTheme();
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-      {/* Blob 1 — indigo top-left */}
-      <div
-        className="aurora-1 absolute rounded-full"
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none w-full h-full bg-[var(--bg)]">
+      {/* 
+        Ultra-modern liquid mesh gradient background 
+        Using three large, heavily blurred, slow-moving blobs blending Orange, Rose, and Violet
+      */}
+      
+      {/* Blob 1: Top Left (Rose/Purple) */}
+      <motion.div
+        animate={{
+          x: [0, 50, 0, -30, 0],
+          y: [0, 30, -20, 10, 0],
+          scale: [1, 1.1, 0.9, 1.05, 1],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] rounded-full mix-blend-multiply blur-[120px] opacity-40 md:opacity-50"
         style={{
-          width: "680px",
-          height: "680px",
-          top: "-180px",
-          left: "-100px",
-          background: `radial-gradient(circle, rgba(99,102,241,1) 0%, transparent 70%)`,
-          opacity,
+          background: theme === "dark" ? "radial-gradient(circle, #E11D48 0%, transparent 70%)" : "radial-gradient(circle, #FDA4AF 0%, transparent 70%)",
         }}
       />
-      {/* Blob 2 — cyan/teal top-right */}
-      <div
-        className="aurora-2 absolute rounded-full"
+
+      {/* Blob 2: Middle Right (Brand Orange) */}
+      <motion.div
+        animate={{
+          x: [0, -60, 20, -10, 0],
+          y: [0, -40, 50, -20, 0],
+          scale: [1, 1.2, 0.8, 1.1, 1],
+        }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[20%] -right-[10%] w-[50%] h-[70%] rounded-full mix-blend-multiply blur-[120px] opacity-40 md:opacity-50"
         style={{
-          width: "520px",
-          height: "520px",
-          top: "0px",
-          right: "-80px",
-          background: `radial-gradient(circle, rgba(34,211,238,1) 0%, transparent 70%)`,
-          opacity: opacity * 0.75,
+          background: theme === "dark" ? "radial-gradient(circle, #EA580C 0%, transparent 70%)" : "radial-gradient(circle, #FDBA74 0%, transparent 70%)",
         }}
       />
-      {/* Blob 3 — violet center-bottom */}
-      <div
-        className="aurora-3 absolute rounded-full"
+
+      {/* Blob 3: Bottom Left (Vibrant Violet) */}
+      <motion.div
+        animate={{
+          x: [0, 40, -40, 20, 0],
+          y: [0, -60, 20, -30, 0],
+          scale: [1, 0.9, 1.1, 0.95, 1],
+        }}
+        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-[20%] left-[10%] w-[60%] h-[60%] rounded-full mix-blend-multiply blur-[120px] opacity-40 md:opacity-50"
         style={{
-          width: "500px",
-          height: "500px",
-          bottom: "-80px",
-          left: "40%",
-          background: `radial-gradient(circle, rgba(167,139,250,1) 0%, transparent 70%)`,
-          opacity: opacity * 0.9,
+          background: theme === "dark" ? "radial-gradient(circle, #8B5CF6 0%, transparent 70%)" : "radial-gradient(circle, #D8B4FE 0%, transparent 70%)",
         }}
       />
-      {/* Blob 4 — rose accent bottom-right */}
-      <div
-        className="aurora-1 absolute rounded-full"
-        style={{
-          width: "380px",
-          height: "380px",
-          bottom: "10%",
-          right: "5%",
-          background: `radial-gradient(circle, rgba(244,114,182,1) 0%, transparent 70%)`,
-          opacity: opacity * 0.5,
-          animationDelay: "4s",
-        }}
+
+      {/* Noise Texture Overlay for Premium Film Grain Feel */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
       />
-      {/* Dot grid overlay */}
-      <div className="absolute inset-0 dot-grid" style={{ opacity: dotOpacity }} />
     </div>
   );
 }

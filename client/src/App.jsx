@@ -14,7 +14,7 @@ export const ThemeContext = createContext({ theme: "dark", toggle: () => {} });
 export const useTheme = () => useContext(ThemeContext);
 
 function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => localStorage.getItem("roar-theme") || "light");
+  const [theme, setTheme] = useState(() => localStorage.getItem("roar-theme") || "dark");
 
   useEffect(() => {
     const root = document.documentElement;

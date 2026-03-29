@@ -20,112 +20,103 @@ const stats = [
 ];
 
 const Team = () => (
-  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
-    style={{ background: "var(--bg)" }}>
+  <motion.div
+    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }}
+    transition={{ duration: 0.3 }}
+    className="bg-[var(--bg)] min-h-screen"
+  >
     <Navbar />
-    <div className="h-20" />
+    <div className="h-16" />
 
     {/* Hero */}
-    <section className="relative overflow-hidden pb-10 pt-14" style={{ background: "var(--bg)" }}>
-      <MeshBg prominent />
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="aurora-1 absolute -top-16 -right-16 w-[450px] h-[450px] rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #FF6B35 0%, transparent 70%)" }} />
-        <div className="absolute inset-0 grid-overlay opacity-40" />
-      </div>
+    <section className="relative overflow-hidden border-b border-[var(--border)] py-20 lg:py-32" style={{ background: "var(--bg)" }}>
+      <MeshBg />
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 text-center">
-        <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="inline-block text-orange-500 text-xs font-semibold tracking-[0.22em] uppercase glass-orange rounded-full px-4 py-2 mb-7">
-          The People
-        </motion.span>
-        <motion.h1 initial={{ opacity: 0, y: 24, filter: "blur(8px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.75, delay: 0.18 }}
-          className="text-5xl md:text-7xl font-bold mb-6 leading-tight" style={{ color: "var(--text)" }}>
-          Meet The <span className="gradient-text">Creators</span>
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+          className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 mb-6 bg-[var(--bg-1)] border border-[var(--border)]">
+          <span className="text-xs font-semibold tracking-wide text-[var(--text)] uppercase">The People</span>
+        </motion.div>
+        
+        <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-gradient pb-1">
+          Meet The Creators
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.34 }}
-          className="text-xl max-w-2xl mx-auto" style={{ color: "var(--text-muted)" }}>
+        
+        <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+          className="text-xl max-w-2xl mx-auto text-[var(--text-muted)]">
           A diverse, passionate team bringing expertise in events, marketing, design, and technology.
         </motion.p>
       </div>
     </section>
 
     {/* Team Grid */}
-    <section className="py-20" style={{ background: "var(--bg-1)" }}>
+    <section className="py-24 bg-[var(--bg-1)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {teamMembers.map((m, i) => (
             <motion.div key={m.name}
-              initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -6, transition: { type: "spring", stiffness: 280, damping: 20 } }}
-              className="card rounded-3xl overflow-hidden group border-glow"
+              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="card rounded-2xl overflow-hidden group flex flex-col"
             >
-              {/* Full-brightness team photo */}
-              <div className="relative overflow-hidden" style={{ height: "260px" }}>
+              <div className="relative h-64 overflow-hidden bg-[var(--bg-2)] border-b border-[var(--border)]">
                 <img src={m.img} alt={m.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
-                {/* Since badge — white pill */}
-                <span className="absolute top-3 left-3 text-xs rounded-full px-3 py-1.5 backdrop-blur-md"
-                  style={{ background: "rgba(255,255,255,0.88)", color: "var(--text-muted)", border: "1px solid var(--card-border)" }}>
+                <span className="absolute top-4 left-4 text-xs font-medium uppercase tracking-wide rounded-md px-2.5 py-1 bg-[var(--bg-1)] text-[var(--text)] border border-[var(--border)] shadow-sm">
                   Since {m.since}
                 </span>
-                {/* Social icons — appear on hover, white pills */}
-                <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                   {[{ I: Linkedin, h: m.socials.linkedin }, { I: Twitter, h: m.socials.twitter }, { I: Instagram, h: m.socials.instagram }].map(({ I, h }) => (
                     <a key={h + I.name} href={h}
-                      className="w-8 h-8 rounded-xl flex items-center justify-center transition-colors hover:text-orange-500 backdrop-blur-md"
-                      style={{ background: "rgba(255,255,255,0.88)", color: "var(--text-muted)", border: "1px solid var(--card-border)" }}>
+                      className="w-8 h-8 rounded-md flex items-center justify-center transition-colors hover:text-[var(--text)] text-[var(--text-muted)] bg-[var(--card-bg)] border border-[var(--border)] shadow-sm hover:border-[var(--text-dim)]">
                       <I className="w-3.5 h-3.5" />
                     </a>
                   ))}
                 </div>
               </div>
-              <div className="p-6">
-                <span className="block text-orange-500 text-xs font-semibold tracking-widest uppercase mb-1">{m.role}</span>
-                <h3 className="font-bold text-xl mb-3" style={{ color: "var(--text)" }}>{m.name}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{m.bio}</p>
+              <div className="p-6 flex flex-col flex-1">
+                <span className="block text-xs font-semibold tracking-widest text-[var(--text-muted)] uppercase mb-2">{m.role}</span>
+                <h3 className="font-bold text-xl mb-3 text-[var(--text)] tracking-tight">{m.name}</h3>
+                <p className="text-sm leading-relaxed text-[var(--text-muted)] flex-1">{m.bio}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Join Us */}
-        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="card rounded-3xl p-10 text-center border-glow">
-          <div className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-5"
-            style={{ background: "#FF6B3512", border: "1px solid #FF6B3525" }}>
-            <ArrowRight className="w-6 h-6 text-orange-500" />
+        {/* Join Us CTA inside container */}
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          className="card rounded-2xl p-10 text-center max-w-3xl mx-auto flex flex-col items-center border-[var(--border)]">
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[var(--bg-1)] border border-[var(--border)] text-[var(--accent)]">
+            <ArrowRight className="w-5 h-5" />
           </div>
-          <h3 className="font-bold text-2xl mb-3" style={{ color: "var(--text)" }}>Want to Join the Team?</h3>
-          <p className="mb-6 max-w-md mx-auto" style={{ color: "var(--text-muted)" }}>We're always looking for passionate, creative people who share our vision for youth empowerment.</p>
-          <Link to="/contact"
-            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/20 group">
-            Get In Touch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <h3 className="font-bold text-2xl tracking-tight mb-4 text-[var(--text)]">Want to Join the Team?</h3>
+          <p className="mb-8 max-w-md mx-auto text-[var(--text-muted)]">We're always looking for passionate, creative people who share our vision for youth empowerment.</p>
+          <Link to="/contact" className="btn-secondary">
+            Get In Touch
           </Link>
         </motion.div>
       </div>
     </section>
 
     {/* Culture */}
-    <section className="py-24 pb-28" style={{ background: "var(--bg)" }}>
+    <section className="py-24 bg-[var(--bg)]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <span className="block text-orange-500 text-xs font-semibold tracking-[0.22em] uppercase mb-6">Our Culture</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: "var(--text)" }}>
-              We Don't Just Work —<br /><span className="gradient-text">We Create Together</span>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <span className="block text-sm font-semibold tracking-tight uppercase text-[var(--text-muted)] mb-3">Our Culture</span>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-[var(--text)]">
+              We Don't Just Work — We Create Together
             </h2>
-            <p className="text-lg leading-relaxed" style={{ color: "var(--text-muted)" }}>
+            <p className="text-lg leading-relaxed text-[var(--text-muted)]">
               At ROAR ENT, the best work comes from trust, creativity, and relentless ambition. We're not building a company — we're building a movement.
             </p>
           </motion.div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-6">
             {stats.map((s, i) => (
               <motion.div key={s.l}
-                initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                whileHover={{ scale: 1.04, y: -4, transition: { type: "spring", stiffness: 280, damping: 20 } }}
-                className="card rounded-3xl p-7 text-center border-glow">
-                <p className="text-4xl font-black gradient-text mb-1">{s.v}</p>
-                <p className="text-sm" style={{ color: "var(--text-muted)" }}>{s.l}</p>
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                className="card rounded-2xl p-8 text-center flex flex-col justify-center border border-[var(--border)]">
+                <p className="text-4xl lg:text-5xl font-bold tracking-tight text-[var(--accent)] mb-2">{s.v}</p>
+                <p className="text-sm font-medium text-[var(--text-muted)]">{s.l}</p>
               </motion.div>
             ))}
           </div>

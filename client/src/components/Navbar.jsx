@@ -20,7 +20,7 @@ export default function Navbar() {
   const { theme, toggle }           = useTheme();
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 24);
+    const fn = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
@@ -28,69 +28,51 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-400 ${
-          scrolled ? "py-3 glass border-b shadow-xl shadow-black/20" : "py-4 bg-transparent"
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "py-3 glass shadow-sm"
+            : "py-4 bg-transparent border-b border-transparent"
         }`}
-        style={scrolled ? { borderBottomColor: "var(--border)" } : {}}
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center border group-hover:border-orange-500/50 transition-colors duration-300"
-              style={{ background: "rgba(255,107,53,0.08)", borderColor: "rgba(255,107,53,0.22)" }}>
-              <img src={logo} alt="ROAR" className="w-6 h-6 object-contain" />
+          <Link to="/" className="flex items-center gap-2 group transition-opacity hover:opacity-80">
+            <div className="w-8 h-8 flex items-center justify-center">
+              <img src={logo} alt="ROAR" className="w-full h-full object-contain" />
             </div>
-            <span className="font-bold text-lg tracking-wide" style={{ color: "var(--text)" }}>
-              ROAR <span className="text-orange-400">ENT</span>
+            <span className="font-semibold text-lg tracking-tight" style={{ color: "var(--text)" }}>
+              ROAR
             </span>
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map(link => (
               <NavLink key={link.name} to={link.to} end={link.to === "/"}
                 className={({ isActive }) =>
-                  `relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
-                    isActive ? "text-orange-400" : "hover:bg-black/5"
+                  `px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                    isActive ? "bg-[var(--glow-brand)] text-[var(--orange)]" : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-hover)]"
                   }`
                 }
-                style={({ isActive }) => ({ color: isActive ? undefined : "var(--text-muted)" })}
               >
-                {({ isActive }) => (
-                  <>
-                    {link.name}
-                    {isActive && (
-                      <motion.span layoutId="nav-indicator"
-                        className="absolute inset-0 rounded-xl"
-                        style={{ background: "rgba(255,107,53,0.09)", border: "1px solid rgba(255,107,53,0.22)", zIndex: -1 }}
-                        transition={{ type: "spring", stiffness: 380, damping: 34 }}
-                      />
-                    )}
-                  </>
-                )}
+                {link.name}
               </NavLink>
             ))}
           </div>
 
           {/* Right side: theme toggle + CTA */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Theme toggle */}
             <button onClick={toggle}
-              className="w-9 h-9 rounded-xl flex items-center justify-center glass transition-all duration-200 hover:scale-110"
+              className="w-8 h-8 rounded-md flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface-hover)] transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === "dark"
-                ? <Sun  className="w-4 h-4 text-orange-400" />
-                : <Moon className="w-4 h-4 text-orange-500" />
-              }
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </button>
-            <NavLink to="/contact"
-              className="inline-flex items-center gap-1.5 bg-orange-500 hover:bg-orange-400 text-white px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25"
-            >
+            <NavLink to="/contact" className="btn-primary">
               Let's Talk
             </NavLink>
           </div>
@@ -98,17 +80,13 @@ export default function Navbar() {
           {/* Mobile row */}
           <div className="flex md:hidden items-center gap-2">
             <button onClick={toggle}
-              className="w-9 h-9 rounded-xl flex items-center justify-center glass"
+              className="w-8 h-8 rounded-md flex items-center justify-center text-[var(--text-muted)]"
               aria-label="Toggle theme"
             >
-              {theme === "dark"
-                ? <Sun  className="w-4 h-4 text-orange-400" />
-                : <Moon className="w-4 h-4 text-orange-500" />
-              }
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <button onClick={() => setMobileOpen(true)}
-              className="p-2 rounded-xl glass"
-              style={{ color: "var(--text-muted)" }}
+              className="p-1.5 rounded-md text-[var(--text-muted)]"
             >
               <Menu size={20} />
             </button>
@@ -120,51 +98,41 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", stiffness: 300, damping: 32 }}
-            className="fixed inset-0 z-[100] flex flex-col"
-            style={{ background: "var(--bg-1)" }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] flex flex-col bg-[var(--bg)]"
           >
-            <div className="flex items-center justify-between px-6 py-4" style={{ borderBottom: "1px solid var(--border)" }}>
-              <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
-                <img src={logo} alt="ROAR" className="w-7 h-7 object-contain" />
-                <span className="font-bold text-lg" style={{ color: "var(--text)" }}>ROAR <span className="text-orange-400">ENT</span></span>
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)]">
+              <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+                <img src={logo} alt="ROAR" className="w-8 h-8 object-contain" />
+                <span className="font-semibold text-lg text-[var(--text)]">ROAR</span>
               </Link>
-              <button onClick={() => setMobileOpen(false)} className="p-2 rounded-xl glass">
-                <X size={20} style={{ color: "var(--text-muted)" }} />
+              <button onClick={() => setMobileOpen(false)} className="p-1.5 text-[var(--text-muted)]">
+                <X size={20} />
               </button>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center px-6 gap-1">
-              {navLinks.map((link, i) => (
-                <motion.div key={link.name}
-                  initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+            <div className="flex-1 px-6 py-8 flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <NavLink key={link.name} to={link.to} onClick={() => setMobileOpen(false)}
+                  className={({ isActive }) =>
+                    `block py-3 px-4 text-lg font-medium rounded-lg transition-colors ${
+                      isActive ? "bg-[var(--glow-brand)] text-[var(--orange)]" : "text-[var(--text-muted)]"
+                    }`
+                  }
                 >
-                  <NavLink to={link.to} onClick={() => setMobileOpen(false)}
-                    className={({ isActive }) =>
-                      `block py-4 px-4 text-2xl font-semibold rounded-2xl transition-all duration-200 ${
-                        isActive ? "text-orange-400" : ""
-                      }`
-                    }
-                    style={({ isActive }) => ({
-                      color:      isActive ? undefined : "var(--text-muted)",
-                      background: isActive ? "rgba(255,107,53,0.08)" : undefined,
-                    })}
-                  >
-                    {link.name}
-                  </NavLink>
-                </motion.div>
+                  {link.name}
+                </NavLink>
               ))}
             </div>
 
-            <div className="px-6 pb-12">
+            <div className="px-6 pb-8">
               <NavLink to="/contact" onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center w-full bg-orange-500 text-white py-4 rounded-2xl font-bold text-lg hover:bg-orange-400 transition-colors"
+                className="btn-primary w-full py-3 text-base"
               >
-                Let's Talk →
+                Let's Talk
               </NavLink>
             </div>
           </motion.div>
